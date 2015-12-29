@@ -1,0 +1,16 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "This is a project for data visualization",
+  "main": "index.js",
+  "dependencies": {
+    "flux": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "t",
+    "start": "s"
+  },
+  "author": "Stephen Cui",
+  "license": "MIT"
+}
