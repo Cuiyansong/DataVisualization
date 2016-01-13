@@ -23,8 +23,6 @@ var _redux = require('redux');
 
 var _reactRedux = require('react-redux');
 
-// React component
-
 var Counter = (function (_React$Component) {
   _inherits(Counter, _React$Component);
 
@@ -35,26 +33,47 @@ var Counter = (function (_React$Component) {
   }
 
   _createClass(Counter, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var myChart = echarts.init(document.getElementById('rootMap'));
+
+      var option = {
+        title: {
+          text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "美女", "帅哥"]
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: this._getRandomData()
+        }]
+      };
+
+      myChart.setOption(option);
+    }
+  }, {
+    key: '_getRandomData',
+    value: function _getRandomData() {
+      return [1, 1, 1, 1, 1, 1, 2, 1].map(function (item) {
+        return Math.random() * item;
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var value = _props.value;
-      var onIncreaseClick = _props.onIncreaseClick;
+      var rootMapStyle = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
 
-      return _react2['default'].createElement(
-        'div',
-        null,
-        _react2['default'].createElement(
-          'span',
-          null,
-          value
-        ),
-        _react2['default'].createElement(
-          'button',
-          { onClick: onIncreaseClick },
-          'Increase'
-        )
-      );
+      return _react2['default'].createElement('div', { id: 'rootMap', className: 'rootMap', style: rootMapStyle });
     }
   }]);
 
