@@ -2,39 +2,9 @@ import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
+import MigrationMap from './component/migration-map';
 
-class Counter extends React.Component {
-
-  componentDidMount() {
-    const myChart = echarts.init(document.getElementById('rootMap'));
-
-    var option = {
-      title: {
-        text: 'ECharts 入门示例'
-      },
-      tooltip: {},
-      legend: {
-        data: ['销量']
-      },
-      xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "美女", "帅哥"]
-      },
-      yAxis: {},
-      series: [{
-        name: '销量',
-        type: 'bar',
-        data: this._getRandomData()
-      }]
-    };
-
-    myChart.setOption(option);
-  }
-
-  _getRandomData() {
-    return [1, 1, 1, 1, 1, 1, 2, 1].map(item => {
-      return Math.random() * item;
-    })
-  }
+class MainPage extends React.Component {
 
   render() {
     const rootMapStyle = {
@@ -43,15 +13,14 @@ class Counter extends React.Component {
     };
 
     return (
-      <div id="rootMap" className='rootMap' style={rootMapStyle}></div>
+      <div style={rootMapStyle}>
+        <MigrationMap></MigrationMap>
+      </div>
     )
   }
 }
 
-Counter.propTypes = {
-  value: PropTypes.number.isRequired,
-  onIncreaseClick: PropTypes.func.isRequired
-};
+MainPage.propTypes = {};
 
 // Action
 const increaseAction = { type: 'increase' };
@@ -88,7 +57,7 @@ function mapDispatchToProps(dispatch) {
 let App = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Counter);
+)(MainPage);
 
 ReactDOM.render(
   <Provider store={store}>
