@@ -1,16 +1,37 @@
 {
-  "name": "package",
-  "version": "1.0.0",
-  "description": "This is a project for data visualization",
+  "name": "people-migration",
+  "version": "0.0.1",
+  "description": "People Migration",
   "main": "index.js",
-  "dependencies": {
-    "flux": "^2.1.1"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "t",
-    "start": "s"
+    "start": "watchify --extension=js -o bundle.js index.js & python -m SimpleHTTPServer"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cuiyansong/DataVisualization.git"
+  },
+  "keywords": [
+    "redux",
+    "react"
+  ],
   "author": "Stephen Cui",
-  "license": "MIT"
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "homepage": "https://github.com/Cuiyansong/DataVisualization#readme",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-redux": "^3.1.0",
+    "redux": "^3.0.0"
+  },
+  "devDependencies": {
+    "babelify": "~6.1.2",
+    "browserify": "~10.2.4",
+    "redux-devtools": "^3.0.1",
+    "watchify": "^3.3.1"
+  }
 }
