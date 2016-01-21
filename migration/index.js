@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
+import createLogger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import MigrationMap from './Component/migration-map';
+import { fetchDataByMonth } from './Actions/migration-map';
+import { increaseAction } from './Actions/index';
+import reducers from './Reducers/index';
 
 class MainPage extends React.Component {
 
@@ -22,22 +27,16 @@ class MainPage extends React.Component {
 
 MainPage.propTypes = {};
 
-// Action
-const increaseAction = { type: 'increase' };
-
-// Reducer
-function counter(state = { count: 0 }, action) {
-  let count = state.count;
-  switch (action.type) {
-  case 'increase':
-    return { count: count + 1 };
-  default:
-    return state
-  }
-}
-
 // Store
-let store = createStore(counter)
+const loggerMiddleware = createLogger({ collapsed: true });
+
+// create a store that has redux-thunk middleware enabled
+const createStoreWithMiddleware = applyMiddleware(
+  thunkMiddleware,
+  loggerMiddleware
+)(createStore);
+
+const store = createStoreWithMiddleware(reducers);
 
 // Map Redux state to component props
 function mapStateToProps(state) {

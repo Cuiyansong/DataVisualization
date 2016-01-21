@@ -198,4 +198,6 @@ export default class MigrationMap extends React.Component {
   }
 }
 
-MigrationMap.PropTypes = {};
+MigrationMap.PropTypes = {
+  data: PropTypes.arrayOf()
+};
