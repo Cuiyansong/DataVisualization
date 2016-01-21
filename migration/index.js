@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import MigrationMap from './component/migration-map';
+import MigrationMap from 'Component/migration-map';
 
 class MainPage extends React.Component {
 
